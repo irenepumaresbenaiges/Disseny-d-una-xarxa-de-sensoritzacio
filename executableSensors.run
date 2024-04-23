@@ -1,0 +1,29 @@
+# Borrar comandes anteriors
+reset;
+
+# Carrega el model
+model modelA.mod;
+#model modelB.mod;
+
+# Carregar les dades
+data dadesA.dat;
+#data dadesB.dat;
+
+# Tria del solver
+option solver cplex;
+
+# Resoldre el problema
+solve;
+
+# Mostrar els resultats
+printf "Aquestes són les interseccions que haurien de tenir sensor:\n";
+
+for {i in INTERSECCIONS: s_i[i] = 1} {
+    printf "%d\n", i;
+}
+
+printf "El fluxe total aconseguit és:\n";
+
+display fluxe_total;
+
+#display {i in INTERSECCIONS: s_i[i] = 1} s_i[i];
